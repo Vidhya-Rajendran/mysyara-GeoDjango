@@ -8,7 +8,7 @@ from django.core.exceptions import ValidationError
 class Washer(models.Model):
     washer_shop_name = models.CharField(max_length=100)
     current_location = models.PointField(blank=True, null=True)
-    is_available = models.BooleanField(default=False, editable=False)
+    is_available = models.BooleanField(default=True, editable=False)
 
 class CarWashOrder(models.Model):
     customer_name = models.CharField(max_length=100)
@@ -19,14 +19,14 @@ class CarWashOrder(models.Model):
     def save(self, *args, **kwargs):
         super(CarWashOrder, self).save(*args, **kwargs)
         dict_obj = model_to_dict(self)
-        available_washer = Washer.objects.filter(is_available=0)
+        available_washer = Washer.objects.filter(is_available=1)
         nearest = available_washer.annotate(distance=Distance('current_location',
             dict_obj['customer_location'])
             ).order_by('distance').first()
         if nearest:
             updated = CarWashOrder.objects.filter(id=dict_obj['id']).update(assigned_to=nearest)
             if updated == 1:
-                Washer.objects.filter(id=nearest.id).update(is_available=1)
+                Washer.objects.filter(id=nearest.id).update(is_available=0)
         else:
             raise ValidationError("Sorry!! There is no washer available right now")
 
