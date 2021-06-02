@@ -8,7 +8,7 @@ from django.core.exceptions import ValidationError
 class Washer(models.Model):
     washer_shop_name = models.CharField(max_length=100)
     current_location = models.PointField(blank=True, null=True)
-    is_available = models.BooleanField(default=False)
+    is_available = models.BooleanField(default=False, editable=False)
 
 class CarWashOrder(models.Model):
     customer_name = models.CharField(max_length=100)
