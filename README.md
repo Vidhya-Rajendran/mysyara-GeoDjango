@@ -20,7 +20,8 @@ git clone https://github.com/Vidhya-Rajendran/mysyara-GeoDjango.git
 ```
 2. To Create and activate virtual environment
 ```
-virtualenv envname --python=python3.6
+virtualenv envname
+
 source envname/bin/activate
 ```
 3. Installing project requirements
