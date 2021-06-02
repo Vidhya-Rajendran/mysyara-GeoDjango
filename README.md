@@ -40,7 +40,7 @@ Washer Name
 Current Location
 Is available
 ```
-Washer profile will be create with washer name and washer location details. Initially is_available field is false. Once car wash order created by customer then is_available will be changed to True.
+Washer profile will be create with washer name and washer location details. Is available field is readonly. By default is_available field is false. Once car wash order created by customer then is_available will be changed to True.
 
 ### Create car wash order
 Give the following details to **Create a car wash order**
