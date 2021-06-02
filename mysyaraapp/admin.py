@@ -9,7 +9,6 @@ class WasherAdmin(OSMGeoAdmin):
 
 @admin.register(CarWashOrder)
 class NewOrder(OSMGeoAdmin):
-    # exclude=['assigned_to']
     list_display = ('customer_name', 'customer_location', 'car_no', 'get_washer')
 
     def get_washer(self, obj):
